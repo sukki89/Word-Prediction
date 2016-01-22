@@ -1,0 +1,35 @@
+from pybrain.tools.shortcuts import buildNetwork
+from pybrain.supervised.trainers import BackpropTrainer
+from pybrain.datasets import SupervisedDataSet,UnsupervisedDataSet
+from pybrain.structure import LinearLayer, SigmoidLayer, SoftmaxLayer, TanhLayer
+from pprint import pprint
+
+#get no of words from corpus and store in numInputNodes and numOutputNodes
+numInputNodes = 21
+numHiddenNodes = 5
+numOutputNodes = 21
+
+#get this from deepthi's code
+ds = SupervisedDataSet(21, 21)
+ds.addSample((1, 2, 4, 6, 2, 3, 4, 5, 1, 3, 5, 6, 7, 1, 4, 7, 1, 2, 3, 5, 6),(1, 2, 5, 6, 2, 4, 4, 5, 1, 2, 5, 6, 7, 1, 4, 6, 1, 2, 3, 3, 6))
+ds.addSample((1, 2, 5, 6, 2, 4, 4, 5, 1, 2, 5, 6, 7, 1, 4, 6, 1, 2, 3, 3, 6),(1, 3, 5, 7, 2, 4, 6, 7, 1, 3, 5, 6, 7, 1, 4, 6, 1, 2, 2, 3, 7))
+print ds
+
+#create a network: Inner laye : Linear, Hiddenlayer : Sigmoid, Outputlayer: Softmax, Type = recurrent
+net = buildNetwork(numInputNodes, numHiddenNodes, numOutputNodes, hiddenclass=SigmoidLayer, outclass=SoftmaxLayer,bias=True, recurrent=True)
+
+#train the network
+# learningRate = 0.1 ~ according to paper
+# lrDecay = rate of change of learningRate in between iterations of the same epoch
+# batchlearning = if set to true the parameters are changed only after completion of entire epoch
+trainer = BackpropTrainer(net, ds,  learningrate=0.1, lrdecay=1,batchlearning=True )
+error = trainer.train()
+print error
+
+#test it on unsupervised dataset validation
+#use the network to predict next word for the validation dataset and calculate the log likelyhood
+#If loglikelihood of validation data increases, training continues in new epoch. If no significant improvement is observed, learning rate α is halved
+#at start of each new epoch
+
+# Instead of using the above method of manually checking till convergence we can also use the below. 
+trainer.trainUntilConvergence(validationProportion=0.25, verbose = True);

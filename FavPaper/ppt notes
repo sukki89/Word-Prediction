@@ -1,0 +1,14 @@
+Slide 1:
+Hi guys, I am Sravani Kamisetty. I am going to present a paper on scalar adjectives. Its called "". This paper is from Stanford, written by C Manning and his students. 
+
+Slide 2:
+Texts and dialogues often express information indirectly. For instance, speakers’ answers to yes/no questions do not always straightforwardly convey a ‘yes’
+or ‘no’ answer. The intended reply is clear in some cases but uncertain in others. In this paper, we present methods for interpreting the answers to questions like these which involve scalar modifiers. Before we dive into understanding how to derive the meaning of scalar adjectives, lets first look at an example. 
+
+For instance, answers to polar (yes/no) questions do not always explicitly contain a ‘yes’ or ‘no’, but rather give information that the hearer can use to
+infer such an answer in a context with some degree of certainty.
+
+Adjectives that can receive a conventional unit of measure, such as little or long, inherently possess a degree of vagueness
+
+Slide 6:
+Since indirect answers are likely to arise in interviews, to gather instances of question–answer pairs involving gradable modifiers (which will serve to evaluate the learning techniques), we use online CNN interview transcripts from five different shows aired between 2000 and 2008
